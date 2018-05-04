@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lumbridge Tourist Bureau - View Notes</title>
+	</head>
+	<body>
+		<div id="notes">
+		</div>
+		<script>
+			var request = new XMLHttpRequest();
+			request.onreadystatechange = function()
+			{
+				if (this.readyState == 4 && this.status == 200)
+				{
+					var notes = JSON.parse(this.responseText);
+
+					html = "";
+					for (i = 0; i < notes.length; ++i)
+					{
+						note = notes[i];
+
+						html += '<p>'
+						html += '<b>Author:</b> ' + note.author + '<br>';
+						html += '<b>Landmark:</b> ' + note.landmark + '<br>';
+						html += '<b>Message:</b> ' + note.message + '<br>';
+						html += '<b>Date:</b> ' + note.date + '<br>';
+						html += '</p>'
+					}
+
+					document.getElementById("notes").innerHTML = html;
+				}
+			}
+
+			request.open("GET", "notes", true);
+			request.send();
+		</script>
+	</body>
+</html>

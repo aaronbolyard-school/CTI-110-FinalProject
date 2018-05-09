@@ -2,10 +2,36 @@
 <html>
 	<head>
 		<title>Lumbridge Tourist Bureau - View Notes</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<div id="notes">
-		</div>
+		<h1 id="ltb-header">Lumbridge Tourist Bureau</h1>
+		<nav>
+			<div class="left-nav-background">
+				<ul>
+					<li>
+						<a href="/home">Home</a>
+					</li>
+					<li>
+						<a href="/view">Notes</a>
+					</li>
+					<li>
+						<a href="/map">Map</a>
+					</li>
+					<li>
+						<a href="/about">About</a>
+					</li>
+				</ul>
+			</div>
+			<div class="right-nav-background"></div>
+		</nav>
+		<main>
+			<h2>Notes</h2>
+			<p>Here are the notes nice people have left about Lumbridge.</p>
+			<p>Why don't you <a href="/add">add</a> your own note? :)</p>
+			<div id="notes">
+			</div>
+		</main>
 		<script>
 			var request = new XMLHttpRequest();
 			request.onreadystatechange = function()

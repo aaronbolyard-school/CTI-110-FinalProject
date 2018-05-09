@@ -1,14 +1,50 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Lumbridge Tourist Bureau - Add Note</title>
+		<title>Lumbridge Tourist Bureau - Add Notes</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<form action="/submit" method="post">
-			Name: <input type="text" name="author"> <br>
-			Landmark: <input type="text" name="landmark"> <br>
-			Message: <input type="text" name="message"> <br>
-			<input type="submit" value="Add">
-		</form>
+		<h1 id="ltb-header">Lumbridge Tourist Bureau</h1>
+		<nav>
+			<div class="left-nav-background">
+				<ul>
+					<li>
+						<a href="/home">Home</a>
+					</li>
+					<li>
+						<a href="/view">Notes</a>
+					</li>
+					<li>
+						<a href="/map">Map</a>
+					</li>
+					<li>
+						<a href="/about">About</a>
+					</li>
+				</ul>
+			</div>
+			<div class="right-nav-background"></div>
+		</nav>
+		<main>
+			<p><b>Instructions:</b> To add a note, identify the landmark (for example, Lumbridge Castle) and provide a helpful note about the location (e.g., "There's a mind rune spawn near the south staircase.").</p>
+			<p>Please only post nice things -- mean messages will be deleted! <span class="small">(Maybe...)</p></p>
+			<form action="/submit" method="post">
+				<table>
+					<tr>
+						<td><span class="form">Name:</span></td>
+						<td><input size="20" type="text" name="author"></td>
+					</tr>
+					<tr>
+						<td><span class="form">Landmark:</span></td>
+						<td><input size="20" type="text" name="landmark"></td>
+					</tr>
+					<tr>
+						<td><span class="form">Message:</span></td>
+						<td><textarea rows="5" cols="21" name="message"></textarea></td>
+					</tr>
+				</table>
+				<input type="submit" value="Add">
+			</form>
+		</main>
 	</body>
 </html>

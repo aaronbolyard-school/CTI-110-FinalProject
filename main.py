@@ -123,7 +123,7 @@ class SimplePage(Page):
 			return file.read()
 
 	def getMime(self):
-		return mimetypes.guess_type(self.filename)
+		return mimetypes.guess_type(self.filename)[0]
 
 class Website:
 	pages = {}
@@ -186,12 +186,18 @@ def main():
 	database = Database()
 	database.add("Bob Smith", "This is a castle.", "Lumbridge Castle")
 	database.add("Hans", "My favorite bush.", "A spiny bush")
-	database.add("Evil H4cker", "<a href='example.com'>lol</a>", "Suspicous dog")
+	database.add("Evil H4cker", "<a href='example.com'>lol</a>", "Suspicious dog")
 
+	Website.getWebsite().addPage("/", SimplePage("www/index.html"))
+	Website.getWebsite().addPage("/home", SimplePage("www/index.html"))
 	Website.getWebsite().addPage("/notes", DatabaseGetPage(database))
 	Website.getWebsite().addPage("/submit", DatabaseSubmitPage(database, SimplePage("www/submit.html")))
 	Website.getWebsite().addPage("/add", SimplePage("www/add.html"))
 	Website.getWebsite().addPage("/view", SimplePage("www/view.html"))
+	Website.getWebsite().addPage("/style.css", SimplePage("www/style.css"))
+	Website.getWebsite().addPage("/images/background-diagonal.png", SimplePage("www/images/background-diagonal.png"))
+	Website.getWebsite().addPage("/images/background-solid.png", SimplePage("www/images/background-solid.png"))
+	Website.getWebsite().addPage("/images/button.png", SimplePage("www/images/button.png"))
 
 	results = database.get()
 	for result in results:

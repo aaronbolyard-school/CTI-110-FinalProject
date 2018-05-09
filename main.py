@@ -168,10 +168,7 @@ class WebsiteRequestHandler(http.server.BaseHTTPRequestHandler):
 		print("POST", filename)
 
 		if page != None:
-			print("before")
 			propertiesUrl = self.rfile.read(int(self.headers['content-length'])).decode("ascii")
-			print("after")
-			print("PROPS", propertiesUrl)
 			properties = urllib.parse.parse_qs(propertiesUrl)
 			page.read(properties)
 
@@ -184,12 +181,14 @@ class WebsiteRequestHandler(http.server.BaseHTTPRequestHandler):
 
 def main():
 	database = Database()
-	database.add("Bob Smith", "This is a castle.", "Lumbridge Castle")
-	database.add("Hans", "My favorite bush.", "A spiny bush")
-	database.add("Evil H4cker", "<a href='example.com'>lol</a>", "Suspicious dog")
+	database.add("Bob", "Great place to buy an axe!", "Bob's Axes")
+	database.add("Hans", "My favorite bush.", "South-west bush")
+	database.add("EvlHckr420", "<script>alert('youve been h4cked')</script>", "Suspicious rock")
 
 	Website.getWebsite().addPage("/", SimplePage("www/index.html"))
 	Website.getWebsite().addPage("/home", SimplePage("www/index.html"))
+	Website.getWebsite().addPage("/map", SimplePage("www/map.html"))
+	Website.getWebsite().addPage("/about", SimplePage("www/about.html"))
 	Website.getWebsite().addPage("/notes", DatabaseGetPage(database))
 	Website.getWebsite().addPage("/submit", DatabaseSubmitPage(database, SimplePage("www/submit.html")))
 	Website.getWebsite().addPage("/add", SimplePage("www/add.html"))
@@ -198,6 +197,9 @@ def main():
 	Website.getWebsite().addPage("/images/background-diagonal.png", SimplePage("www/images/background-diagonal.png"))
 	Website.getWebsite().addPage("/images/background-solid.png", SimplePage("www/images/background-solid.png"))
 	Website.getWebsite().addPage("/images/button.png", SimplePage("www/images/button.png"))
+	Website.getWebsite().addPage("/images/map.png", SimplePage("www/images/map.png"))
+	Website.getWebsite().addPage("/images/castle.png", SimplePage("www/images/castle.png"))
+	Website.getWebsite().addPage("/images/banner.png", SimplePage("www/images/banner.png"))
 
 	results = database.get()
 	for result in results:
